@@ -1,0 +1,7 @@
+seed = 502
+
+./lcharvol.filler: Segfault at 33
+./lcharvol.filler: Segfault at 34
+./lcharvol.filler won
+Score:
+34AGAINST33
