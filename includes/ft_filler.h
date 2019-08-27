@@ -6,7 +6,7 @@
 /*   By: vsanta <vsanta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 12:34:39 by Alexandr          #+#    #+#             */
-/*   Updated: 2019/08/27 19:10:34 by vsanta           ###   ########.fr       */
+/*   Updated: 2019/08/27 20:09:22 by vsanta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct		s_fl
 void	tmp_print_mtx(int **map, int w, int h);
 void	tmp_ft_print(t_fl *fl);
 
-int **ft_fl_mtx_new(int w, int h);
+int **ft_fl_mtx_new(int width, int height);
 
 int ft_fl_set_player(t_fl **fl, char **line);
 int ft_fl_set_map_size(t_fl **fl, char **line);

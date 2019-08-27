@@ -6,7 +6,7 @@
 /*   By: vsanta <vsanta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 19:01:42 by vsanta            #+#    #+#             */
-/*   Updated: 2019/08/27 19:13:24 by vsanta           ###   ########.fr       */
+/*   Updated: 2019/08/27 19:33:59 by vsanta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	tmp_ft_print(t_fl *fl)
 	printf("map_h = %i\n", fl->map_h);
 	printf("piece_w = %i\n", fl->piece_w);
 	printf("piece_h = %i\n", fl->piece_h);
+	printf("\n");
 	tmp_print_mtx(fl->map, fl->map_w, fl->map_h);
 	printf("\n");
 	tmp_print_mtx(fl->piece, fl->piece_w, fl->piece_h);

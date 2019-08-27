@@ -6,7 +6,7 @@
 /*   By: vsanta <vsanta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 18:57:45 by vsanta            #+#    #+#             */
-/*   Updated: 2019/08/27 19:18:29 by vsanta           ###   ########.fr       */
+/*   Updated: 2019/08/27 20:10:03 by vsanta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int ft_fl_set_map_size(t_fl **fl, char **line)
         ft_lm_put_error(fl, ft_array_free(&tmp, ft_str_free(line, 1)));
     (*fl)->map_h = ft_atoi(tmp[1]);
     (*fl)->map_w = ft_atoi(tmp[2]);
-	if (((*fl)->map = ft_fl_mtx_new((*fl)->map_w, (*fl)->map_w)) == NULL)
+	if (((*fl)->map = ft_fl_mtx_new((*fl)->map_w, (*fl)->map_h)) == NULL)
 		ft_lm_put_error(fl, ft_array_free(&tmp, ft_str_free(line, 1)));
 	(*fl)->count_h = 0;
     return (ft_array_free(&tmp, 30));
@@ -49,7 +49,7 @@ int ft_fl_set_piece_size(t_fl **fl, char **line)
         ft_lm_put_error(fl, ft_array_free(&tmp, ft_str_free(line, 1)));
     (*fl)->piece_h = ft_atoi(tmp[1]);
     (*fl)->piece_w = ft_atoi(tmp[2]);
-	if (((*fl)->piece = ft_fl_mtx_new((*fl)->map_w, (*fl)->map_w)) == NULL)
+	if (((*fl)->piece = ft_fl_mtx_new((*fl)->map_w, (*fl)->map_h)) == NULL)
 		ft_lm_put_error(fl, ft_array_free(&tmp, ft_str_free(line, 1)));
 	(*fl)->count_h = 0;
     return (ft_array_free(&tmp, 50));
