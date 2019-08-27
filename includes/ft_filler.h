@@ -6,7 +6,7 @@
 /*   By: vsanta <vsanta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 12:34:39 by Alexandr          #+#    #+#             */
-/*   Updated: 2019/08/27 20:09:22 by vsanta           ###   ########.fr       */
+/*   Updated: 2019/08/27 20:52:38 by vsanta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,13 @@
 # define PLAYER_1 'O'
 # define PLAYER_2 'X'
 # define PIECE_ACTIVE '*'
+
+typedef struct		s_cord
+{
+	int				x;
+	int				y;
+	int				val;
+}					t_cord;
 
 typedef struct		s_fl
 {

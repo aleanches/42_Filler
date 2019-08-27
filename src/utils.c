@@ -6,7 +6,7 @@
 /*   By: vsanta <vsanta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 19:01:42 by vsanta            #+#    #+#             */
-/*   Updated: 2019/08/27 19:33:59 by vsanta           ###   ########.fr       */
+/*   Updated: 2019/08/27 20:47:49 by vsanta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,15 @@ void	tmp_print_mtx(int **map, int w, int h)
 		ww = 0;
 		while (ww < w)
 		{
-			printf("%i ", map[hh][ww]);
+			if (map[hh][ww] == -1)
+				printf("| %c ", 'A');
+			else if (map[hh][ww] == -2)
+				printf("| %c ", 'X');
+			else
+				printf("| %i ", map[hh][ww]);
 			ww++;
 		}
-		printf("\n");
+		printf("|\n");
 		hh++;
 	}
 }

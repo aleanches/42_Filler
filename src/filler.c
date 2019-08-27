@@ -6,7 +6,7 @@
 /*   By: vsanta <vsanta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 18:39:33 by vsanta            #+#    #+#             */
-/*   Updated: 2019/08/27 20:14:22 by vsanta           ###   ########.fr       */
+/*   Updated: 2019/08/27 21:11:46 by vsanta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,67 @@ int ft_fl_parse(t_fl **fl)
 	return (action);
 }
 
+int ft_fl_map_set_around_one(t_fl *fl, t_cord cord, int val)
+{
+	int count;
+	t_cord cur;
+	
+	count = 0;
+	cur.y = cord.y - 1;
+	while (cur.y <= cord.y + 1)
+	{
+		if (cur.y >= 0 && cur.y < fl->map_h)
+		{
+			cur.x = cord.x - 1;
+			while (cur.x <= cord.x + 1)
+			{
+				if (cur.x >= 0 && cur.x < fl->map_w && fl->map[cur.y][cur.x] == 0 && !(cur.y == cord.y && cur.x == cord.x))
+				{
+					count++;
+					fl->map[cur.y][cur.x] = val;
+				}
+				cur.x++;
+			}
+		}
+		cur.y++;
+	}
+	return (count);
+}
+
+int ft_fl_map_set_around_all(t_fl *fl, int set_for, int set_val)
+{
+	int count;
+	t_cord cur;
+
+	count = 0;
+	cur.y = 0;
+	while (cur.y < fl->map_h)
+	{
+		cur.x = 0;
+		while (cur.x < fl->map_w)
+		{
+			if (fl->map[cur.y][cur.x] == set_for)
+				count += ft_fl_map_set_around_one(fl, cur, set_val);
+			cur.x++;
+		}
+		cur.y++;
+	}
+	return (count);
+}
+
+int ft_fl_map_set_map(t_fl *fl)
+{
+	int set_val;
+	
+	set_val = 1;
+	if (ft_fl_map_set_around_all(fl, -2, set_val) == 0)
+		return (0);
+	while (ft_fl_map_set_around_all(fl, set_val, set_val + 1) > 0)
+		set_val++;
+	return (set_val);
+}
+
+
 int main()
 {
     t_fl *fl;
@@ -66,6 +127,8 @@ int main()
 
 	if (ft_fl_parse(&fl) == 10)
 		ft_lm_put_error(&fl, 1);
+
+	printf("-------    %i\n", ft_fl_map_set_map(fl));
 
 	tmp_ft_print(fl);
 
