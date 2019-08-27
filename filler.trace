@@ -1,7 +1,4 @@
-seed = 502
-
-./lcharvol.filler: Segfault at 33
-./lcharvol.filler: Segfault at 34
-./lcharvol.filler won
+seed = 9823
+./resources/players/abanlin.filler won
 Score:
-34AGAINST33
+1AGAINST0
