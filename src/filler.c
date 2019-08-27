@@ -6,7 +6,7 @@
 /*   By: Alexandr <Alexandr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 18:39:33 by vsanta            #+#    #+#             */
-/*   Updated: 2019/08/28 00:22:48 by Alexandr         ###   ########.fr       */
+/*   Updated: 2019/08/28 00:25:01 by Alexandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int ft_fl_map_set_around_cord(t_fl *fl, t_cord cord, int val)
 	return (count);
 }
 
-int ft_fl_map_set_around_map(t_fl *fl, int set_for, int set_val)
+int ft_fl_map_set_around_val(t_fl *fl, int set_for, int set_val)
 {
 	int count;
 	t_cord cur;
@@ -112,13 +112,12 @@ int ft_fl_map_set_gradient(t_fl *fl, int set_for)
 	int set_val;
 	
 	set_val = 1;
-	if (ft_fl_map_set_around_map(fl, set_for, set_val) == 0)
+	if (ft_fl_map_set_around_val(fl, set_for, set_val) == 0)
 		return (0);
-	while (ft_fl_map_set_around_map(fl, set_val, set_val + 1) > 0)
+	while (ft_fl_map_set_around_val(fl, set_val, set_val + 1) > 0)
 		set_val++;
 	return (set_val);
 }
-
 
 int ft_fl_get_piece_sum(t_fl *fl, t_cord cord, int player)
 {
@@ -173,7 +172,7 @@ int main()
 
 	tmp_ft_print(fl);
 
-	printf("-------    %i\n", ft_fl_try(fl, cord, -1));
+	printf("-------    %i\n", ft_fl_get_piece_sum(fl, cord, -1));
 
 }
 
