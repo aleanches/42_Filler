@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_filler.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsanta <vsanta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: Alexandr <Alexandr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 12:34:39 by Alexandr          #+#    #+#             */
-/*   Updated: 2019/08/27 20:52:38 by vsanta           ###   ########.fr       */
+/*   Updated: 2019/08/28 00:19:24 by Alexandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 # define PLAYER_1 'O'
 # define PLAYER_2 'X'
 # define PIECE_ACTIVE '*'
+
+# define MAP(MAP, A) MAP[A.y][A.x]
+# define MAPS(MAP, A, B) MAP[A.y + B.y][A.x + B.x]
 
 typedef struct		s_cord
 {

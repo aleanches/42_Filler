@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filler.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsanta <vsanta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: Alexandr <Alexandr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 18:39:33 by vsanta            #+#    #+#             */
-/*   Updated: 2019/08/27 21:11:46 by vsanta           ###   ########.fr       */
+/*   Updated: 2019/08/28 00:22:48 by Alexandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int ft_fl_parse(t_fl **fl)
 	return (action);
 }
 
-int ft_fl_map_set_around_one(t_fl *fl, t_cord cord, int val)
+int ft_fl_map_set_around_cord(t_fl *fl, t_cord cord, int val)
 {
 	int count;
 	t_cord cur;
@@ -71,7 +71,9 @@ int ft_fl_map_set_around_one(t_fl *fl, t_cord cord, int val)
 			cur.x = cord.x - 1;
 			while (cur.x <= cord.x + 1)
 			{
-				if (cur.x >= 0 && cur.x < fl->map_w && fl->map[cur.y][cur.x] == 0 && !(cur.y == cord.y && cur.x == cord.x))
+				if (cur.x >= 0 && cur.x < fl->map_w &&
+					fl->map[cur.y][cur.x] == 0 &&
+					!(cur.y == cord.y && cur.x == cord.x))
 				{
 					count++;
 					fl->map[cur.y][cur.x] = val;
@@ -84,7 +86,7 @@ int ft_fl_map_set_around_one(t_fl *fl, t_cord cord, int val)
 	return (count);
 }
 
-int ft_fl_map_set_around_all(t_fl *fl, int set_for, int set_val)
+int ft_fl_map_set_around_map(t_fl *fl, int set_for, int set_val)
 {
 	int count;
 	t_cord cur;
@@ -97,7 +99,7 @@ int ft_fl_map_set_around_all(t_fl *fl, int set_for, int set_val)
 		while (cur.x < fl->map_w)
 		{
 			if (fl->map[cur.y][cur.x] == set_for)
-				count += ft_fl_map_set_around_one(fl, cur, set_val);
+				count += ft_fl_map_set_around_cord(fl, cur, set_val);
 			cur.x++;
 		}
 		cur.y++;
@@ -105,34 +107,73 @@ int ft_fl_map_set_around_all(t_fl *fl, int set_for, int set_val)
 	return (count);
 }
 
-int ft_fl_map_set_map(t_fl *fl)
+int ft_fl_map_set_gradient(t_fl *fl, int set_for)
 {
 	int set_val;
 	
 	set_val = 1;
-	if (ft_fl_map_set_around_all(fl, -2, set_val) == 0)
+	if (ft_fl_map_set_around_map(fl, set_for, set_val) == 0)
 		return (0);
-	while (ft_fl_map_set_around_all(fl, set_val, set_val + 1) > 0)
+	while (ft_fl_map_set_around_map(fl, set_val, set_val + 1) > 0)
 		set_val++;
 	return (set_val);
 }
 
 
+int ft_fl_get_piece_sum(t_fl *fl, t_cord cord, int player)
+{
+    int		connects;
+    t_cord	cur;
+	
+	connects = 0;
+	cur.val = 0;
+    if (cord.x + fl->piece_w > fl->map_w || cord.y + fl->piece_h > fl->map_h)
+		return (-1);
+	cur.y = 0;
+	while (cur.y < fl->piece_h)
+	{
+		cur.x = 0;
+		while (cur.x < fl->piece_w)
+		{
+			if (MAP(fl->piece, cur) && MAPS(fl->map, cur, cord) < 0 &&
+				MAPS(fl->map, cur, cord) == player)
+				connects++;
+			else if (MAP(fl->piece, cur) && MAPS(fl->map, cur, cord) < 0)
+				return (-1);
+			else if (MAP(fl->piece, cur))
+				cur.val += fl->map[cur.y + cord.y][cur.x + cord.x];
+			cur.x++;
+		}
+		cur.y++;
+	}
+	return (connects == 1 ? cur.val : -1);
+}
+
+
+
+
+
 int main()
 {
     t_fl *fl;
+	t_cord cord;
 
     ft_fl_init(&fl);
 
+	
 
-	if (ft_fl_parse(&fl) == 10)
+	cord.x = 2;
+	cord.y = 1;
+
+
+	if (ft_fl_parse(&fl) == 10 || fl->piece_h != fl->count_h)
 		ft_lm_put_error(&fl, 1);
 
-	printf("-------    %i\n", ft_fl_map_set_map(fl));
+	printf("-------    %i\n", ft_fl_map_set_gradient(fl, -2));
 
 	tmp_ft_print(fl);
 
-
+	printf("-------    %i\n", ft_fl_try(fl, cord, -1));
 
 }
 
