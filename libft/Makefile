@@ -6,7 +6,7 @@
 #    By: vsanta <vsanta@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/11 18:03:01 by vsanta            #+#    #+#              #
-#    Updated: 2019/08/19 17:50:13 by vsanta           ###   ########.fr        #
+#    Updated: 2019/08/27 18:31:21 by vsanta           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,7 @@ SRC_NAME	= ft_abs.c ft_lst_iter.c ft_putchar.c ft_strlen.c \
 			ft_memdup.c \
 			f_clear_fd_node.c ft_lstadd.c ft_lstcount.c ft_lstdelnode.c ft_lstclear.c \
 			ft_lstiter.c ft_lstnew.c f_get_next_line.c f_clear_fd_node.c \
-			ft_lstdel.c ft_lstdelone.c ft_lstmap.c ft_lstpushback.c \
+			ft_lstdel.c ft_lstdelone.c ft_lstmap.c ft_lstpushback.c ft_get_char_i.c
 
 OBJ_NAME	= $(SRC_NAME:.c=.o)
 

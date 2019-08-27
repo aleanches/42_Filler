@@ -1,1 +1,1 @@
-./resources/filler_vm -f resources/maps/map00 -p1 ./test -p2 ./resources/players/abanlin.filler
+./resources/filler_vm2 -f resources/maps/map02 -p1 ./resources/players/abanlin.filler -p2 ./resources/players/abanlin.filler | ./filler_visualizer

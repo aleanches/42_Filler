@@ -6,7 +6,7 @@
 /*   By: vsanta <vsanta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/05 17:11:24 by vsanta            #+#    #+#             */
-/*   Updated: 2019/08/25 19:31:31 by vsanta           ###   ########.fr       */
+/*   Updated: 2019/08/27 18:31:06 by vsanta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void					*ft_memdup(void *data, size_t size);
 
 void					ft_putchar_fd(char c, int fd);
 void					ft_putchar(char c);
+int						ft_get_char_i(char *str, char c);
 void					ft_putendl_fd(char const *s, int fd);
 void					ft_putendl(char const *s);
 void					ft_putnbr_fd(int n, int fd);
