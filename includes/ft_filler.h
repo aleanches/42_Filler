@@ -6,7 +6,7 @@
 /*   By: Alexandr <Alexandr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 12:34:39 by Alexandr          #+#    #+#             */
-/*   Updated: 2019/08/28 00:19:24 by Alexandr         ###   ########.fr       */
+/*   Updated: 2019/08/28 12:28:30 by Alexandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ typedef struct		s_fl
 	int				count_h;
 }					t_fl;
 
-void	tmp_print_mtx(int **map, int w, int h);
-void	tmp_ft_print(t_fl *fl);
+void	tmp_print_mtx(int fd, int **map, int w, int h);
+void	tmp_ft_print(int fd, t_fl *fl);
 
 int **ft_fl_mtx_new(int width, int height);
 
@@ -52,5 +52,8 @@ int ft_fl_set_piece_size(t_fl **fl, char **line);
 int ft_fl_parse_map(t_fl **fl, char **line);
 int ft_fl_parse_piece(t_fl **fl, char **line);
 void		ft_lm_put_error(t_fl **fl, int ret_val);
+
+void	ft_fl_print_otimal(t_fl *fl, int player);
+int ft_fl_map_set_gradient(t_fl *fl, int set_for);
 
 #endif

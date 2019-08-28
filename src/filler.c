@@ -6,7 +6,7 @@
 /*   By: Alexandr <Alexandr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 18:39:33 by vsanta            #+#    #+#             */
-/*   Updated: 2019/08/28 00:25:01 by Alexandr         ###   ########.fr       */
+/*   Updated: 2019/08/28 12:49:45 by Alexandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void    ft_fl_init(t_fl **fl)
 
 void		ft_lm_put_error(t_fl **fl, int ret_val)
 {
+	//int fd = open("input.txt", O_RDWR);
 	ft_putstr("ERROR\n");
 	exit(ret_val);
 }
@@ -40,8 +41,9 @@ int ft_fl_parse(t_fl **fl)
     action = 10;
     while (get_next_line(0, &line) > 0)
     {
+
         if (action == 10)
-			action = ft_fl_set_player(fl, &line);
+				action = ft_fl_set_player(fl, &line);
         else if (action == 20)
 			action = ft_fl_set_map_size(fl, &line);
 		else if (action == 30)
@@ -49,9 +51,14 @@ int ft_fl_parse(t_fl **fl)
 		else if (action == 40)
 			action = ft_fl_set_piece_size(fl, &line);
 		else if (action == 50)
+		{
 			action = ft_fl_parse_piece(fl, &line);
-		else if (action == 60)
-			ft_lm_put_error(fl, ft_str_free(&line, 1));
+			if (action == 60)
+			{
+				break;
+			}	
+		}
+		
 		ft_str_free(&line, 0);
     }
 	return (action);
@@ -149,6 +156,36 @@ int ft_fl_get_piece_sum(t_fl *fl, t_cord cord, int player)
 }
 
 
+void	ft_fl_print_otimal(t_fl *fl, int player)
+{
+	t_cord optimal;
+	t_cord cur;
+	
+	optimal.x = 0;
+	optimal.y = 0;
+	optimal.val = -1;
+	cur.y = 0;
+	while (cur.y < fl->map_h)
+	{
+		cur.x = 0;
+		while (cur.x < fl->map_w)
+		{
+			cur.val = ft_fl_get_piece_sum(fl, cur, player);
+			if (cur.val != -1 && (optimal.val == -1 || cur.val < optimal.val))
+				optimal = cur;
+			cur.x++;
+		}
+		cur.y++;
+	}
+	// ft_putnbr(optimal.y);
+	// ft_putchar(' ');
+	// ft_putnbr(optimal.x);
+	// ft_putchar('\n');
+	printf("%i %i\n", optimal.y, optimal.x);
+}
+
+
+
 
 
 
@@ -157,23 +194,48 @@ int main()
     t_fl *fl;
 	t_cord cord;
 
+	char *line;
+
     ft_fl_init(&fl);
 
-	
+	// int fd = open("input.txt", O_RDWR);
 
-	cord.x = 2;
-	cord.y = 1;
+	// while (get_next_line(0, &line) > 0)
+	// {
+	// 	dprintf(fd, "%s\n", line);
+	// }
 
 
-	if (ft_fl_parse(&fl) == 10 || fl->piece_h != fl->count_h)
-		ft_lm_put_error(&fl, 1);
+	while (42)
+	{
+		if (ft_fl_parse(&fl) == 10 || fl->piece_h != fl->count_h)
+			ft_lm_put_error(&fl, 1);
 
-	printf("-------    %i\n", ft_fl_map_set_gradient(fl, -2));
+		ft_fl_map_set_gradient(fl, fl->player == -1 ? -2 : -1);
+		ft_fl_print_otimal(fl, fl->player);
+	}
 
-	tmp_ft_print(fl);
 
-	printf("-------    %i\n", ft_fl_get_piece_sum(fl, cord, -1));
 
+
+
+	// ft_fl_map_set_gradient(fl, -2);
+	// ft_fl_print_otimal(fl, -1);
+// 
+// 					
+// 				ft_putstr_fd(ft_itoa(fl->player) , fd);
+
+	// ft_fl_map_set_gradient(fl, fl->player == -1 ? -2 : -1);
+	// ft_fl_print_otimal(fl, fl->player);
+
+	// printf("-------    %i\n", ft_fl_map_set_gradient(fl, fl->player == -1 ? -2 : -1));
+
+	// int fd;
+	// fd = open("input.txt", O_RDWR);
+	// tmp_ft_print(fd, fl);
+
+	// printf("-------    %i\n", ft_fl_get_piece_sum(fl, cord, fl->player));
+	return (0);
 }
 
 

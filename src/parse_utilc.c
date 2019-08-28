@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utilc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vsanta <vsanta@student.42.fr>              +#+  +:+       +#+        */
+/*   By: Alexandr <Alexandr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 18:57:45 by vsanta            #+#    #+#             */
-/*   Updated: 2019/08/27 20:10:03 by vsanta           ###   ########.fr       */
+/*   Updated: 2019/08/28 11:00:16 by Alexandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ int ft_fl_set_player(t_fl **fl, char **line)
     if ((tmp = ft_strsplit(*line, ' ')) == NULL || ft_array_len(tmp) < 3)
         ft_lm_put_error(fl, ft_array_free(&tmp, ft_str_free(line, 1)));
     if (ft_strcmp(tmp[2], "p1") == 0)
-        (*fl)->player = 1;
+        (*fl)->player = -1;
     else if (ft_strcmp(tmp[2], "p2") == 0)
-        (*fl)->player = 2;
+        (*fl)->player = -2;
     return (ft_array_free(&tmp, 20));
 }
 
