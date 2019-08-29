@@ -6,7 +6,7 @@
 /*   By: Alexandr <Alexandr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 12:34:39 by Alexandr          #+#    #+#             */
-/*   Updated: 2019/08/29 15:41:24 by Alexandr         ###   ########.fr       */
+/*   Updated: 2019/08/29 22:32:08 by Alexandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # define PLAYER_1 'O'
 # define PLAYER_2 'X'
 # define TOKEN_ACTIVE '*'
+# define SMALL_MAP_SQ 650
 
 # define MAP(MAP, A) MAP[A.y][A.x]
 # define MAPS(MAP, A, B) MAP[A.y + B.y][A.x + B.x]
@@ -36,6 +37,7 @@ typedef struct		s_fl
 	int				player;
 	int				map_w;
 	int				map_h;
+	int				map_sq;
 	int				**map;
 	int				token_w;
 	int				token_h;

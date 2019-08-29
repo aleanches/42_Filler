@@ -6,7 +6,7 @@
 /*   By: Alexandr <Alexandr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 18:39:33 by vsanta            #+#    #+#             */
-/*   Updated: 2019/08/29 15:42:17 by Alexandr         ###   ########.fr       */
+/*   Updated: 2019/08/29 22:36:06 by Alexandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ static void    ft_fl_init(t_fl **fl)
     (*fl)->player = 0;
     (*fl)->map_w = 0;
     (*fl)->map_h = 0;
+	(*fl)->map_sq = 0;
     (*fl)->map = NULL;
     (*fl)->token_w = 0;
     (*fl)->token_h = 0;
@@ -67,7 +68,6 @@ int main(void)
 		if (fl->action == 60)
 		{
 			fl->action = 20;
-			ft_fl_token_cut(&fl);
 			ft_fl_make_move(fl, fl->player);
 		}
 		ft_str_free(&(fl->line), 0);

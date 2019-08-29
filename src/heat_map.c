@@ -6,7 +6,7 @@
 /*   By: Alexandr <Alexandr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 13:19:58 by Alexandr          #+#    #+#             */
-/*   Updated: 2019/08/29 14:47:49 by Alexandr         ###   ########.fr       */
+/*   Updated: 2019/08/29 22:59:36 by Alexandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ static int ft_fl_map_set_around_val(t_fl *fl, int set_for, int set_val)
 		{
 			if (fl->map[cur.y][cur.x] == set_for)
 			{
-				if (ft_fl_map_find_palyer_around(fl, cur, fl->player) == 1)
+				if (fl->map_sq > SMALL_MAP_SQ &&
+					ft_fl_map_find_palyer_around(fl, cur, fl->player) == 1)
 					count += ft_fl_map_set_cross_cord(fl, cur, set_val);
 				else
 					count += ft_fl_map_set_around_cord(fl, cur, set_val);

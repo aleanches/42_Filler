@@ -6,7 +6,7 @@
 /*   By: Alexandr <Alexandr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 18:57:45 by vsanta            #+#    #+#             */
-/*   Updated: 2019/08/29 15:41:49 by Alexandr         ###   ########.fr       */
+/*   Updated: 2019/08/29 22:38:05 by Alexandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,9 @@ int ft_fl_set_map_size(t_fl **fl, char **line)
     if ((tmp = ft_strsplit(*line, ' ')) == NULL
 		|| ft_array_len(tmp) < 3 || ft_strcmp(tmp[0], "Plateau") != 0)
         ft_lm_put_error(fl, ft_array_free(&tmp, ft_str_free(line, 1)));
+	(*fl)->map_w = ft_atoi(tmp[2]);
     (*fl)->map_h = ft_atoi(tmp[1]);
-    (*fl)->map_w = ft_atoi(tmp[2]);
+	(*fl)->map_sq = (*fl)->map_w * (*fl)->map_h;
 	if (((*fl)->map = ft_fl_mtx_new((*fl)->map_w, (*fl)->map_h)) == NULL)
 		ft_lm_put_error(fl, ft_array_free(&tmp, ft_str_free(line, 1)));
     return (ft_array_free(&tmp, 30));
@@ -53,8 +54,8 @@ int ft_fl_set_token_size(t_fl **fl, char **line)
 		ft_array_len(tmp) < 3 || ft_strcmp(tmp[0], "Piece") != 0)
         ft_lm_put_error(fl, ft_array_free(&tmp, ft_str_free(line, 1)));
 	ft_fl_mtx_free(&((*fl)->token), (*fl)->token_w, (*fl)->token_h, 0);
-    (*fl)->token_h = ft_atoi(tmp[1]);
     (*fl)->token_w = ft_atoi(tmp[2]);
+	(*fl)->token_h = ft_atoi(tmp[1]);
 	if (((*fl)->token = ft_fl_mtx_new((*fl)->token_w, (*fl)->token_h)) == NULL)
 		ft_lm_put_error(fl, ft_array_free(&tmp, ft_str_free(line, 1)));
     return (ft_array_free(&tmp, 50));

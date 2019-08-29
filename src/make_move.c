@@ -6,7 +6,7 @@
 /*   By: Alexandr <Alexandr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 20:45:01 by vsanta            #+#    #+#             */
-/*   Updated: 2019/08/29 15:41:39 by Alexandr         ###   ########.fr       */
+/*   Updated: 2019/08/29 23:04:38 by Alexandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	ft_fl_make_move(t_fl *fl, int player)
 	optimal.y = 0;
 	optimal.val = -1;
 	cur.y = 0;
-
 	ft_fl_map_heat_set(fl, fl->player == -1 ? -2 : -1);
 	while (cur.y < fl->map_h)
 	{
@@ -58,7 +57,7 @@ void	ft_fl_make_move(t_fl *fl, int player)
 		while (cur.x < fl->map_w)
 		{
 			cur.val = ft_fl_get_token_sum(fl, cur, player);
-			if (cur.val != -1 && (optimal.val == -1 || cur.val <= optimal.val))
+			if (cur.val != -1 && (optimal.val == -1 || cur.val < optimal.val))
 				optimal = cur;
 			cur.x++;
 		}
