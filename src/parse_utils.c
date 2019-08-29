@@ -6,7 +6,7 @@
 /*   By: Alexandr <Alexandr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 18:57:45 by vsanta            #+#    #+#             */
-/*   Updated: 2019/08/29 22:38:05 by Alexandr         ###   ########.fr       */
+/*   Updated: 2019/08/30 00:46:23 by Alexandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ int ft_fl_set_player(t_fl **fl, char **line)
     char    **tmp;
 
     if ((tmp = ft_strsplit(*line, ' ')) == NULL || ft_array_len(tmp) < 3)
-        ft_lm_put_error(fl, ft_array_free(&tmp, ft_str_free(line, 1)));
+        ft_fl_put_error(fl, ft_array_free(&tmp, ft_str_free(line, 1)));
     if (ft_strcmp(tmp[2], "p1") == 0)
         (*fl)->player = -1;
     else if (ft_strcmp(tmp[2], "p2") == 0)
         (*fl)->player = -2;
 	else
-		ft_lm_put_error(fl, ft_array_free(&tmp, ft_str_free(line, 1)));
+		ft_fl_put_error(fl, ft_array_free(&tmp, ft_str_free(line, 1)));
     return (ft_array_free(&tmp, 20));
 }
 
@@ -36,12 +36,12 @@ int ft_fl_set_map_size(t_fl **fl, char **line)
 		return (ft_fl_mtx_clean((*fl)->map, (*fl)->map_w, (*fl)->map_h, 30));
     if ((tmp = ft_strsplit(*line, ' ')) == NULL
 		|| ft_array_len(tmp) < 3 || ft_strcmp(tmp[0], "Plateau") != 0)
-        ft_lm_put_error(fl, ft_array_free(&tmp, ft_str_free(line, 1)));
+        ft_fl_put_error(fl, ft_array_free(&tmp, ft_str_free(line, 1)));
 	(*fl)->map_w = ft_atoi(tmp[2]);
     (*fl)->map_h = ft_atoi(tmp[1]);
 	(*fl)->map_sq = (*fl)->map_w * (*fl)->map_h;
 	if (((*fl)->map = ft_fl_mtx_new((*fl)->map_w, (*fl)->map_h)) == NULL)
-		ft_lm_put_error(fl, ft_array_free(&tmp, ft_str_free(line, 1)));
+		ft_fl_put_error(fl, ft_array_free(&tmp, ft_str_free(line, 1)));
     return (ft_array_free(&tmp, 30));
 }
 
@@ -52,12 +52,12 @@ int ft_fl_set_token_size(t_fl **fl, char **line)
 	(*fl)->count_h = 0;
     if ((tmp = ft_strsplit(*line, ' ')) == NULL ||
 		ft_array_len(tmp) < 3 || ft_strcmp(tmp[0], "Piece") != 0)
-        ft_lm_put_error(fl, ft_array_free(&tmp, ft_str_free(line, 1)));
+        ft_fl_put_error(fl, ft_array_free(&tmp, ft_str_free(line, 1)));
 	ft_fl_mtx_free(&((*fl)->token), (*fl)->token_w, (*fl)->token_h, 0);
     (*fl)->token_w = ft_atoi(tmp[2]);
 	(*fl)->token_h = ft_atoi(tmp[1]);
 	if (((*fl)->token = ft_fl_mtx_new((*fl)->token_w, (*fl)->token_h)) == NULL)
-		ft_lm_put_error(fl, ft_array_free(&tmp, ft_str_free(line, 1)));
+		ft_fl_put_error(fl, ft_array_free(&tmp, ft_str_free(line, 1)));
     return (ft_array_free(&tmp, 50));
 }
 
@@ -69,10 +69,10 @@ int ft_fl_parse_map(t_fl **fl, char **line)
 	if (ft_strncmp(*line, "   ", 3) == 0)
         return (30);
 	if ((start = ft_get_char_i(*line, ' ')) == -1)
-		ft_lm_put_error(fl, ft_str_free(line, 1));
+		ft_fl_put_error(fl, ft_str_free(line, 1));
 	start++;
     if (ft_strlen(*line) - start != (*fl)->map_w)
-		ft_lm_put_error(fl, ft_str_free(line, 1));
+		ft_fl_put_error(fl, ft_str_free(line, 1));
     i = 0;
     while (i < (*fl)->map_w)
     {
@@ -96,7 +96,7 @@ int ft_fl_parse_token(t_fl **fl, char **line)
 	int		start;
 
     if (ft_strlen(*line) != (*fl)->token_w)
-		ft_lm_put_error(fl, ft_str_free(line, 1));
+		ft_fl_put_error(fl, ft_str_free(line, 1));
     i = 0;
     while (i < (*fl)->token_w)
     {

@@ -6,7 +6,7 @@
 /*   By: Alexandr <Alexandr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 20:45:01 by vsanta            #+#    #+#             */
-/*   Updated: 2019/08/29 23:04:38 by Alexandr         ###   ########.fr       */
+/*   Updated: 2019/08/30 00:41:50 by Alexandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ static int ft_fl_get_token_sum(t_fl *fl, t_cord cord, int player)
 		cur.x = 0;
 		while (cur.x < fl->token_w)
 		{
-			if (MAP(fl->token, cur) && MAPS(fl->map, cur, cord) < 0 &&
-				MAPS(fl->map, cur, cord) == player)
+			if (MAP(fl->token, cur) && MOFS(fl->map, cur, cord) < 0 &&
+				MOFS(fl->map, cur, cord) == player)
 				connects++;
-			else if (MAP(fl->token, cur) && MAPS(fl->map, cur, cord) < 0)
+			else if (MAP(fl->token, cur) && MOFS(fl->map, cur, cord) < 0)
 				return (-1);
 			else if (MAP(fl->token, cur))
-				cur.val += MAPS(fl->map, cur, cord);
+				cur.val += MOFS(fl->map, cur, cord);
 			cur.x++;
 		}
 		cur.y++;
@@ -41,13 +41,12 @@ static int ft_fl_get_token_sum(t_fl *fl, t_cord cord, int player)
 	return (connects == 1 ? cur.val : -1);
 }
 
-void	ft_fl_make_move(t_fl *fl, int player)
+int	ft_fl_make_move(t_fl *fl, int player, int ret_val)
 {
 	t_cord optimal;
 	t_cord cur;
 	
-	optimal.x = 0;
-	optimal.y = 0;
+	ft_bzero((void*)&optimal, sizeof(t_cord));
 	optimal.val = -1;
 	cur.y = 0;
 	ft_fl_map_heat_set(fl, fl->player == -1 ? -2 : -1);
@@ -67,4 +66,5 @@ void	ft_fl_make_move(t_fl *fl, int player)
 	ft_putchar(' ');
 	ft_putnbr(optimal.x);
 	ft_putchar('\n');
+	return (ret_val);
 }
