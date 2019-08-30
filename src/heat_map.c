@@ -6,7 +6,7 @@
 /*   By: Alexandr <Alexandr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 13:19:58 by Alexandr          #+#    #+#             */
-/*   Updated: 2019/08/30 00:30:56 by Alexandr         ###   ########.fr       */
+/*   Updated: 2019/08/30 14:48:07 by Alexandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int ft_fl_map_find_palyer_around(t_fl *fl, t_cord cord, int player)
 			{
 				if (cur.x >= 0 && cur.x < fl->map_w &&
 					!(cur.y == cord.y && cur.x == cord.x) &&
-					MAP(fl->map, cur) == player)
+					CORD(fl->map, cur) == player)
 					return (1);
 				cur.x++;
 			}
@@ -79,11 +79,11 @@ static int ft_fl_map_set_around_cord(t_fl *fl, t_cord cord, int val)
 			while (cur.x <= cord.x + 1)
 			{
 				if (cur.x >= 0 && cur.x < fl->map_w &&
-					MAP(fl->map, cur) == 0 &&
+					CORD(fl->map, cur) == 0 &&
 					!(cur.y == cord.y && cur.x == cord.x))
 				{
 					count++;
-					MAP(fl->map, cur) = val;
+					CORD(fl->map, cur) = val;
 				}
 				cur.x++;
 			}
@@ -105,7 +105,7 @@ static int ft_fl_map_set_around_val(t_fl *fl, int set_for, int set_val)
 		cur.x = 0;
 		while (cur.x < fl->map_w)
 		{
-			if (MAP(fl->map, cur) == set_for)
+			if (CORD(fl->map, cur) == set_for)
 			{
 				if (fl->map_sq > SMALL_MAP_SQ &&
 					ft_fl_map_find_palyer_around(fl, cur, fl->player) == 1)

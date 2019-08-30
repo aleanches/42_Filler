@@ -6,7 +6,7 @@
 /*   By: Alexandr <Alexandr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 12:34:39 by Alexandr          #+#    #+#             */
-/*   Updated: 2019/08/30 00:35:00 by Alexandr         ###   ########.fr       */
+/*   Updated: 2019/08/30 14:47:46 by Alexandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # define TOKEN_ACTIVE '*'
 # define SMALL_MAP_SQ 650
 
-# define MAP(MAP, A) MAP[A.y][A.x]
-# define MOFS(MAP, M, OFS) MAP[M.y + OFS.y][M.x + OFS.x]
+# define CORD(MAP, CORD) MAP[CORD.y][CORD.x]
+# define CORD_OFS(MAP, CORD, OFS) MAP[CORD.y + OFS.y][CORD.x + OFS.x]
 
 typedef struct		s_cord
 {
@@ -55,7 +55,7 @@ int ft_fl_set_map_size(t_fl **fl, char **line);
 int ft_fl_set_token_size(t_fl **fl, char **line);
 int ft_fl_parse_map(t_fl **fl, char **line);
 int ft_fl_parse_token(t_fl **fl, char **line);
-void		ft_lm_put_error(t_fl **fl, int ret_val);
+void	ft_fl_put_error(t_fl **fl, int ret_val);
 
 
 

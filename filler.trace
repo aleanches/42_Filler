@@ -1,4 +1,5 @@
-seed = 3776
+seed = 2869
+O: error on input
 ./test.filler won
 Score:
-65AGAINST100
+203AGAINST203

@@ -6,7 +6,7 @@
 /*   By: Alexandr <Alexandr@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 20:45:01 by vsanta            #+#    #+#             */
-/*   Updated: 2019/08/30 00:41:50 by Alexandr         ###   ########.fr       */
+/*   Updated: 2019/08/30 15:01:06 by Alexandr         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ static int ft_fl_get_token_sum(t_fl *fl, t_cord cord, int player)
 		cur.x = 0;
 		while (cur.x < fl->token_w)
 		{
-			if (MAP(fl->token, cur) && MOFS(fl->map, cur, cord) < 0 &&
-				MOFS(fl->map, cur, cord) == player)
+			if (CORD(fl->token, cur) && CORD_OFS(fl->map, cord, cur) < 0 &&
+				CORD_OFS(fl->map, cord, cur) == player)
 				connects++;
-			else if (MAP(fl->token, cur) && MOFS(fl->map, cur, cord) < 0)
+			else if (CORD(fl->token, cur) && CORD_OFS(fl->map, cord, cur) < 0)
 				return (-1);
-			else if (MAP(fl->token, cur))
-				cur.val += MOFS(fl->map, cur, cord);
+			else if (CORD(fl->token, cur))
+				cur.val += CORD_OFS(fl->map, cord, cur);
 			cur.x++;
 		}
 		cur.y++;
