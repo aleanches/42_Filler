@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_filler.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Alexandr <Alexandr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsanta <vsanta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 12:34:39 by Alexandr          #+#    #+#             */
-/*   Updated: 2019/08/30 14:47:46 by Alexandr         ###   ########.fr       */
+/*   Updated: 2019/08/30 18:15:00 by vsanta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,30 +45,16 @@ typedef struct		s_fl
 	int				count_h;
 }					t_fl;
 
-void	tmp_print_mtx(int fd, int **map, int w, int h);
-void	tmp_ft_print(int fd, t_fl *fl);
-
-int **ft_fl_mtx_new(int width, int height);
-
-int ft_fl_set_player(t_fl **fl, char **line);
-int ft_fl_set_map_size(t_fl **fl, char **line);
-int ft_fl_set_token_size(t_fl **fl, char **line);
-int ft_fl_parse_map(t_fl **fl, char **line);
-int ft_fl_parse_token(t_fl **fl, char **line);
-void	ft_fl_put_error(t_fl **fl, int ret_val);
-
-
-
-int ft_fl_map_heat_set(t_fl *fl, int set_for);
-
-int	ft_fl_make_move(t_fl *fl, int player, int ret_val);
-int ft_fl_mtx_free(int ***map, int w, int h, int ret_val);
-
-void	ft_fl_token_cut(t_fl **fl);
-
-
-int ft_fl_mtx_clean(int **map, int w, int h, int ret_val);
-
-void	ft_fl_token_cut(t_fl **fl);
+void				ft_fl_put_error(t_fl **fl, int ret_val);
+int					ft_fl_map_heat_set(t_fl *fl, int set_for);
+int					ft_fl_make_move(t_fl *fl, int player, int ret_val);
+int					ft_fl_mtx_free(int ***map, int w, int h, int ret_val);
+int					ft_fl_mtx_clean(int **map, int w, int h, int ret_val);
+int					**ft_fl_mtx_new(int width, int height);
+int					ft_fl_set_player(t_fl **fl, char **line);
+int					ft_fl_set_map_size(t_fl **fl, char **line);
+int					ft_fl_set_token_size(t_fl **fl, char **line);
+int					ft_fl_parse_map(t_fl **fl, char **line);
+int					ft_fl_parse_token(t_fl **fl, char **line);
 
 #endif

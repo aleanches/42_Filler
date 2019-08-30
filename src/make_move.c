@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   make_move.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Alexandr <Alexandr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsanta <vsanta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/28 20:45:01 by vsanta            #+#    #+#             */
-/*   Updated: 2019/08/30 15:01:06 by Alexandr         ###   ########.fr       */
+/*   Updated: 2019/08/30 18:28:15 by vsanta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_filler.h"
+#include "ft_filler.h"
 
-static int ft_fl_get_token_sum(t_fl *fl, t_cord cord, int player)
+static int	ft_fl_get_token_sum(t_fl *fl, t_cord cord, int player)
 {
-    int		connects;
-    t_cord	cur;
-	
+	int		connects;
+	t_cord	cur;
+
 	connects = 0;
 	cur.val = 0;
-    if (cord.x + fl->token_w > fl->map_w || cord.y + fl->token_h > fl->map_h)
+	if (cord.x + fl->token_w > fl->map_w || cord.y + fl->token_h > fl->map_h)
 		return (-1);
 	cur.y = 0;
 	while (cur.y < fl->token_h)
@@ -41,11 +41,11 @@ static int ft_fl_get_token_sum(t_fl *fl, t_cord cord, int player)
 	return (connects == 1 ? cur.val : -1);
 }
 
-int	ft_fl_make_move(t_fl *fl, int player, int ret_val)
+int			ft_fl_make_move(t_fl *fl, int player, int ret_val)
 {
 	t_cord optimal;
 	t_cord cur;
-	
+
 	ft_bzero((void*)&optimal, sizeof(t_cord));
 	optimal.val = -1;
 	cur.y = 0;

@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   map_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Alexandr <Alexandr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsanta <vsanta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 19:01:42 by vsanta            #+#    #+#             */
-/*   Updated: 2019/08/29 23:06:56 by Alexandr         ###   ########.fr       */
+/*   Updated: 2019/08/30 18:28:18 by vsanta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_filler.h"
+#include "ft_filler.h"
 
-int ft_fl_mtx_free(int ***map, int w, int h, int ret_val)
+int		ft_fl_mtx_free(int ***map, int w, int h, int ret_val)
 {
-	int  y;
+	int	y;
 
 	y = 0;
 	while (map && *map && y < h)
@@ -29,9 +29,9 @@ int ft_fl_mtx_free(int ***map, int w, int h, int ret_val)
 	return (ret_val);
 }
 
-int ft_fl_mtx_clean(int **map, int w, int h, int ret_val)
+int		ft_fl_mtx_clean(int **map, int w, int h, int ret_val)
 {
-	int  y;
+	int	y;
 
 	y = 0;
 	while (map && *map && y < h)
@@ -42,18 +42,18 @@ int ft_fl_mtx_clean(int **map, int w, int h, int ret_val)
 	return (ret_val);
 }
 
-int **ft_fl_mtx_new(int width, int height)
+int		**ft_fl_mtx_new(int width, int height)
 {
-	int i;
-    int **mtx;
-    
+	int	i;
+	int	**mtx;
+
 	i = 0;
-    if ((mtx = (int**)malloc(sizeof(int*) * height)) == NULL)
-        return (NULL);
+	if ((mtx = (int**)malloc(sizeof(int*) * height)) == NULL)
+		return (NULL);
 	while (i < height)
 	{
 		if ((mtx[i] = (int*)malloc(sizeof(int) * width)) == NULL)
-			return (NULL);	
+			return (NULL);
 		ft_bzero((void*)mtx[i], sizeof(int) * width);
 		i++;
 	}

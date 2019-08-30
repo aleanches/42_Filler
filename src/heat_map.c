@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   heat_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Alexandr <Alexandr@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vsanta <vsanta@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/29 13:19:58 by Alexandr          #+#    #+#             */
-/*   Updated: 2019/08/30 14:48:07 by Alexandr         ###   ########.fr       */
+/*   Updated: 2019/08/30 17:58:40 by vsanta           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "ft_filler.h"
+#include "ft_filler.h"
 
-static int ft_fl_map_find_palyer_around(t_fl *fl, t_cord cord, int player)
+static int	ft_fl_map_find_palyer_around(t_fl *fl, t_cord cord, int player)
 {
 	t_cord cur;
-	
+
 	cur.y = cord.y - 1;
 	while (cur.y <= cord.y + 1)
 	{
@@ -36,11 +36,11 @@ static int ft_fl_map_find_palyer_around(t_fl *fl, t_cord cord, int player)
 	return (0);
 }
 
-static int ft_fl_map_set_cross_cord(t_fl *fl, t_cord cord, int val)
+static int	ft_fl_map_set_cross_cord(t_fl *fl, t_cord cord, int val)
 {
 	int count;
 
-	count = 0; 
+	count = 0;
 	if (cord.y - 1 >= 0 && fl->map[cord.y - 1][cord.x] == 0)
 	{
 		count++;
@@ -64,11 +64,11 @@ static int ft_fl_map_set_cross_cord(t_fl *fl, t_cord cord, int val)
 	return (count);
 }
 
-static int ft_fl_map_set_around_cord(t_fl *fl, t_cord cord, int val)
+static int	ft_fl_map_set_around_cord(t_fl *fl, t_cord cord, int val)
 {
-	int count;
-	t_cord cur;
-	
+	int		count;
+	t_cord	cur;
+
 	count = 0;
 	cur.y = cord.y - 1;
 	while (cur.y <= cord.y + 1)
@@ -93,10 +93,10 @@ static int ft_fl_map_set_around_cord(t_fl *fl, t_cord cord, int val)
 	return (count);
 }
 
-static int ft_fl_map_set_around_val(t_fl *fl, int set_for, int set_val)
+static int	ft_fl_map_set_around_val(t_fl *fl, int set_for, int set_val)
 {
-	int count;
-	t_cord cur;
+	int		count;
+	t_cord	cur;
 
 	count = 0;
 	cur.y = 0;
@@ -120,10 +120,10 @@ static int ft_fl_map_set_around_val(t_fl *fl, int set_for, int set_val)
 	return (count);
 }
 
-int ft_fl_map_heat_set(t_fl *fl, int set_for)
+int			ft_fl_map_heat_set(t_fl *fl, int set_for)
 {
 	int set_val;
-	
+
 	set_val = 1;
 	if (ft_fl_map_set_around_val(fl, set_for, set_val) == 0)
 		return (0);
