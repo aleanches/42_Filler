@@ -12,7 +12,7 @@
 
 #include "ft_filler.h"
 
-static int	ft_fl_get_token_sum(t_fl *fl, t_cord cord, int player)
+static int	get_token_sum(t_fl *fl, t_cord cord, int player)
 {
 	int		connects;
 	t_cord	cur;
@@ -41,7 +41,7 @@ static int	ft_fl_get_token_sum(t_fl *fl, t_cord cord, int player)
 	return (connects == 1 ? cur.val : -1);
 }
 
-int			ft_fl_make_move(t_fl *fl, int player, int ret_val)
+int			make_move(t_fl *fl, int player, int ret_val)
 {
 	t_cord optimal;
 	t_cord cur;
@@ -49,13 +49,13 @@ int			ft_fl_make_move(t_fl *fl, int player, int ret_val)
 	ft_bzero((void*)&optimal, sizeof(t_cord));
 	optimal.val = -1;
 	cur.y = 0;
-	ft_fl_map_heat_set(fl, fl->player == -1 ? -2 : -1);
+	map_heat_set(fl, fl->player == -1 ? -2 : -1);
 	while (cur.y < fl->map_h)
 	{
 		cur.x = 0;
 		while (cur.x < fl->map_w)
 		{
-			cur.val = ft_fl_get_token_sum(fl, cur, player);
+			cur.val = get_token_sum(fl, cur, player);
 			if (cur.val != -1 && (optimal.val == -1 || cur.val < optimal.val))
 				optimal = cur;
 			cur.x++;

@@ -12,7 +12,7 @@
 
 #include "ft_filler.h"
 
-int		ft_fl_mtx_free(int ***map, int w, int h, int ret_val)
+int		mtx_free(int ***map, int w, int h, int ret_val)
 {
 	int	y;
 
@@ -29,7 +29,7 @@ int		ft_fl_mtx_free(int ***map, int w, int h, int ret_val)
 	return (ret_val);
 }
 
-int		ft_fl_mtx_clean(int **map, int w, int h, int ret_val)
+int		mtx_clean(int **map, int w, int h, int ret_val)
 {
 	int	y;
 
@@ -42,7 +42,7 @@ int		ft_fl_mtx_clean(int **map, int w, int h, int ret_val)
 	return (ret_val);
 }
 
-int		**ft_fl_mtx_new(int width, int height)
+int		**mtx_new(int width, int height)
 {
 	int	i;
 	int	**mtx;

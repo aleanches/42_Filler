@@ -45,16 +45,16 @@ typedef struct		s_fl
 	int				count_h;
 }					t_fl;
 
-void				ft_fl_put_error(t_fl **fl, int ret_val);
-int					ft_fl_map_heat_set(t_fl *fl, int set_for);
-int					ft_fl_make_move(t_fl *fl, int player, int ret_val);
-int					ft_fl_mtx_free(int ***map, int w, int h, int ret_val);
-int					ft_fl_mtx_clean(int **map, int w, int h, int ret_val);
-int					**ft_fl_mtx_new(int width, int height);
-int					ft_fl_set_player(t_fl **fl, char **line);
-int					ft_fl_set_map_size(t_fl **fl, char **line);
-int					ft_fl_set_token_size(t_fl **fl, char **line);
-int					ft_fl_parse_map(t_fl **fl, char **line);
-int					ft_fl_parse_token(t_fl **fl, char **line);
+void				put_error(t_fl **fl, int ret_val);
+int					map_heat_set(t_fl *fl, int set_for);
+int					make_move(t_fl *fl, int player, int ret_val);
+int					mtx_free(int ***map, int w, int h, int ret_val);
+int					mtx_clean(int **map, int w, int h, int ret_val);
+int					**mtx_new(int width, int height);
+int					set_player(t_fl **fl, char **line);
+int					set_map_size(t_fl **fl, char **line);
+int					set_token_size(t_fl **fl, char **line);
+int					parse_map(t_fl **fl, char **line);
+int					parse_token(t_fl **fl, char **line);
 
 #endif

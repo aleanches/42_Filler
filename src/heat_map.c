@@ -12,7 +12,7 @@
 
 #include "ft_filler.h"
 
-static int	ft_fl_map_find_palyer_around(t_fl *fl, t_cord cord, int player)
+static int	map_find_palyer_around(t_fl *fl, t_cord cord, int player)
 {
 	t_cord cur;
 
@@ -36,7 +36,7 @@ static int	ft_fl_map_find_palyer_around(t_fl *fl, t_cord cord, int player)
 	return (0);
 }
 
-static int	ft_fl_map_set_cross_cord(t_fl *fl, t_cord cord, int val)
+static int	map_set_cross_cord(t_fl *fl, t_cord cord, int val)
 {
 	int count;
 
@@ -64,7 +64,7 @@ static int	ft_fl_map_set_cross_cord(t_fl *fl, t_cord cord, int val)
 	return (count);
 }
 
-static int	ft_fl_map_set_around_cord(t_fl *fl, t_cord cord, int val)
+static int	map_set_around_cord(t_fl *fl, t_cord cord, int val)
 {
 	int		count;
 	t_cord	cur;
@@ -93,7 +93,7 @@ static int	ft_fl_map_set_around_cord(t_fl *fl, t_cord cord, int val)
 	return (count);
 }
 
-static int	ft_fl_map_set_around_val(t_fl *fl, int set_for, int set_val)
+static int	map_set_around_val(t_fl *fl, int set_for, int set_val)
 {
 	int		count;
 	t_cord	cur;
@@ -108,10 +108,10 @@ static int	ft_fl_map_set_around_val(t_fl *fl, int set_for, int set_val)
 			if (CORD(fl->map, cur) == set_for)
 			{
 				if (fl->map_sq > SMALL_MAP_SQ &&
-					ft_fl_map_find_palyer_around(fl, cur, fl->player) == 1)
-					count += ft_fl_map_set_cross_cord(fl, cur, set_val);
+					map_find_palyer_around(fl, cur, fl->player) == 1)
+					count += map_set_cross_cord(fl, cur, set_val);
 				else
-					count += ft_fl_map_set_around_cord(fl, cur, set_val);
+					count += map_set_around_cord(fl, cur, set_val);
 			}
 			cur.x++;
 		}
@@ -120,14 +120,14 @@ static int	ft_fl_map_set_around_val(t_fl *fl, int set_for, int set_val)
 	return (count);
 }
 
-int			ft_fl_map_heat_set(t_fl *fl, int set_for)
+int			map_heat_set(t_fl *fl, int set_for)
 {
 	int set_val;
 
 	set_val = 1;
-	if (ft_fl_map_set_around_val(fl, set_for, set_val) == 0)
+	if (map_set_around_val(fl, set_for, set_val) == 0)
 		return (0);
-	while (ft_fl_map_set_around_val(fl, set_val, set_val + 1) > 0)
+	while (map_set_around_val(fl, set_val, set_val + 1) > 0)
 		set_val++;
 	return (set_val);
 }
